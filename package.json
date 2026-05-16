@@ -6,8 +6,8 @@
   "author": "blc",
   "license": "GPL-3.0-only",
   "scripts": {
-    "check": "eslint && stylelint \"**/*.css\"",
-    "lint": "eslint --fix && stylelint --fix \"**/*.css\""
+    "lint": "eslint && stylelint \"**/*.css\"",
+    "fix": "eslint --fix && stylelint --fix \"**/*.css\""
   },
   "devDependencies": {
     "@antfu/eslint-config": "^9.0.0",

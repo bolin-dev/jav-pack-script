@@ -21,7 +21,6 @@ export default antfu(
       css: true,
       markdown: true,
     },
-    isInEditor: true,
   },
   {
     files: ["**/*.js"],
