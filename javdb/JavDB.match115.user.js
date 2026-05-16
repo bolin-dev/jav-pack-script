@@ -46,7 +46,7 @@ const listenClick = (onclose, defaultAction) => {
   };
 
   const timer = {};
-  const getHref = node => node.closest(`a:not(.${TARGET_CLASS})`)?.href;
+  const getHref = (node) => node.closest(`a:not(.${TARGET_CLASS})`)?.href;
   const getTimerKey = location.pathname.startsWith("/v/") ? () => location.href : getHref;
 
   const debounce = (target) => {
@@ -91,7 +91,7 @@ const formatBytes = (bytes, k = 1024) => {
 };
 
 const extractData = (data, keys = ["pc", "cid", "n", "s", "t"], format = "s") => {
-  return data.map(item => ({ ...JSON.parse(JSON.stringify(item, keys)), [format]: formatBytes(item[format]) }));
+  return data.map((item) => ({ ...JSON.parse(JSON.stringify(item, keys)), [format]: formatBytes(item[format]) }));
 };
 
 const formatTip = ({ n, s, t }) => `${n} - ${s} / ${t}`;
@@ -122,11 +122,10 @@ const formatTip = ({ n, s, t }) => `${n} - ${s} / ${t}`;
       const { data = [] } = await Req115.filesSearchAllVideos(codes.join(" "));
       if (load.dataset.uid !== UUID) return;
 
-      const sources = extractData(data.filter(it => regex.test(it.n)));
+      const sources = extractData(data.filter((it) => regex.test(it.n)));
       cont.innerHTML = sources.map(render).join("") || "暂无匹配";
       GM_setValue(code, sources);
-    }
-    catch (err) {
+    } catch (err) {
       if (load.dataset.uid !== UUID) return;
       cont.innerHTML = "匹配失败";
       Util.print(err?.message);
@@ -181,11 +180,11 @@ const formatTip = ({ n, s, t }) => `${n} - ${s} / ${t}`;
   const movieList = document.querySelectorAll(MOVIE_SELECTOR);
   if (!movieList.length) return;
 
-  const parseCodeCls = code => ["x", ...code.split(/[\s.\-_]/)].filter(Boolean).join("-");
+  const parseCodeCls = (code) => ["x", ...code.split(/[\s.\-_]/)].filter(Boolean).join("-");
 
   const matchAfter = ({ code, regex, target }, data) => {
     target.closest(MOVIE_SELECTOR).classList.add(parseCodeCls(code));
-    const sources = data.filter(it => regex.test(it.n));
+    const sources = data.filter((it) => regex.test(it.n));
     const len = sources.length;
 
     let pc = "";
@@ -195,11 +194,11 @@ const formatTip = ({ n, s, t }) => `${n} - ${s} / ${t}`;
     let textContent = "未匹配";
 
     if (len) {
-      const zhs = sources.filter(it => Magnet.zhReg.test(it.n));
-      const crack = sources.find(it => Magnet.crackReg.test(it.n));
+      const zhs = sources.filter((it) => Magnet.zhReg.test(it.n));
+      const crack = sources.find((it) => Magnet.crackReg.test(it.n));
 
       const zh = zhs[0];
-      const both = zhs.find(it => Magnet.crackReg.test(it.n));
+      const both = zhs.find((it) => Magnet.crackReg.test(it.n));
       const active = both ?? zh ?? crack ?? sources[0];
 
       pc = active.pc;
@@ -237,7 +236,7 @@ const formatTip = ({ n, s, t }) => `${n} - ${s} / ${t}`;
     let loading = false;
 
     const over = (pre, data = []) => {
-      wait[pre].forEach(it => after?.(it, data));
+      wait[pre].forEach((it) => after?.(it, data));
       delete wait[pre];
     };
 
@@ -251,8 +250,7 @@ const formatTip = ({ n, s, t }) => `${n} - ${s} / ${t}`;
         const sources = extractData(data);
         GM_setValue(prefix, sources);
         over(prefix, sources);
-      }
-      catch (err) {
+      } catch (err) {
         over(prefix);
         Util.print(err?.message);
       }
@@ -285,7 +283,7 @@ const formatTip = ({ n, s, t }) => `${n} - ${s} / ${t}`;
     };
 
     const obs = new IntersectionObserver(callback, { threshold: 0.25 });
-    return nodeList => nodeList.forEach(node => obs.observe(node));
+    return (nodeList) => nodeList.forEach((node) => obs.observe(node));
   };
 
   const matchQueue = useMatchQueue(matchBefore, matchAfter);
@@ -315,10 +313,9 @@ const formatTip = ({ n, s, t }) => `${n} - ${s} / ${t}`;
       const { data = [] } = await Req115.filesSearchAllVideos(codes.join(" "));
       if (target.dataset.uid !== UUID) return;
 
-      const sources = extractData(data.filter(it => regex.test(it.n)));
+      const sources = extractData(data.filter((it) => regex.test(it.n)));
       GM_setValue(code, sources);
-    }
-    catch (err) {
+    } catch (err) {
       if (target.dataset.uid !== UUID) return;
       Util.print(err?.message);
     }
@@ -334,7 +331,7 @@ const formatTip = ({ n, s, t }) => `${n} - ${s} / ${t}`;
     if (type === "contextmenu") return matchCode(target);
     if (type !== "click") return;
     const code = target.closest(MOVIE_SELECTOR)?.querySelector(CODE_SELECTOR)?.textContent.trim();
-    if (code) setTimeout(() => publish(code), 750);
+    if (code) setTimeout(publish, 750, code);
   };
 
   unsafeWindow[MATCH_API] = matchCode;

@@ -53,14 +53,14 @@ const getDetails = (dom = document) => {
 
   const studio
     = [...infoNode.querySelectorAll(":scope > .panel-block")]
-      .find(node => node.querySelector("strong")?.textContent.startsWith("片商"))
+      .find((node) => node.querySelector("strong")?.textContent.startsWith("片商"))
       ?.querySelector(".value a")
       ?.textContent
       .trim() ?? "";
 
   const sources = [...dom.querySelectorAll("#preview-video source")]
-    .map(node => node.getAttribute("src")?.trim())
-    .filter(src => Boolean(src) && !src.includes(".m3u"));
+    .map((node) => node.getAttribute("src")?.trim())
+    .filter((src) => Boolean(src) && !src.includes(".m3u"));
 
   return { code, isWestern, isFC2, isVR, isUncensored, title, cover, studio, sources };
 };
@@ -118,7 +118,7 @@ const useVideo = () => {
     if (["ArrowLeft"].includes(code)) return changeTime(e, -2);
   };
 
-  const onVolumechange = e => localStorage.setItem("volume", e.target.volume);
+  const onVolumechange = (e) => localStorage.setItem("volume", e.target.volume);
 
   return (sources, poster) => {
     const video = document.createElement("video");
@@ -128,7 +128,7 @@ const useVideo = () => {
     video.controls = true;
     video.preload = "metadata";
     video.volume = localStorage.getItem("volume") ?? 0.1;
-    video.innerHTML = sources.map(src => `<source src="${src}" />`).join("");
+    video.innerHTML = sources.map((src) => `<source src="${src}" />`).join("");
 
     video.addEventListener("volumechange", onVolumechange);
     video.addEventListener("keydown", onKeydown);
@@ -162,7 +162,7 @@ const useVideo = () => {
 
     const container = document.querySelector(".column-video-cover a");
     container.insertAdjacentElement("beforeend", video);
-    container.addEventListener("click", e => onclick(e, video));
+    container.addEventListener("click", (e) => onclick(e, video));
     video.focus();
   };
 
@@ -180,8 +180,7 @@ const useVideo = () => {
     details.sources = sources;
     GM_setValue(mid, details);
     setTrailer(details);
-  }
-  catch (err) {
+  } catch (err) {
     Util.print(err?.message);
   }
 })();
@@ -201,7 +200,7 @@ const useVideo = () => {
 
   const createVideo = useVideo();
 
-  const onVolumechange = e => localStorage.setItem("muted", e.target.muted);
+  const onVolumechange = (e) => localStorage.setItem("muted", e.target.muted);
 
   const handleHover = (selector, onEnter, onLeave) => {
     let currElem = null;
@@ -356,8 +355,7 @@ const useVideo = () => {
       details.sources = sources;
       GM_setValue(mid, details);
       setTrailer(elem, details);
-    }
-    catch (err) {
+    } catch (err) {
       elem.classList.remove(HOVER);
       Util.print(err?.message);
     }

@@ -30,8 +30,8 @@ Util.upStore();
   if (!mid) return;
 
   const transByte = Magnet.useTransByte();
-  const HD_SIZE = parseFloat(transByte("2GB"));
-  const MIN_SIZE = parseFloat(transByte("250MB"));
+  const HD_SIZE = Number.parseFloat(transByte("2GB"));
+  const MIN_SIZE = Number.parseFloat(transByte("250MB"));
 
   const UNC = document.querySelector(".title.is-4").textContent.includes("無碼");
   const CONT = document.querySelector("#magnets-content");
@@ -77,7 +77,7 @@ Util.upStore();
     `;
   };
 
-  const filterMin = item => !item.min;
+  const filterMin = (item) => !item.min;
 
   const parseSize = ({ size, files, ...item }) => {
     const meta = [];
@@ -85,7 +85,7 @@ Util.upStore();
     if (files) meta.push(`${files}个文件`);
 
     size = transByte(size);
-    const magnetSize = parseFloat(size);
+    const magnetSize = Number.parseFloat(size);
     const hd = magnetSize >= HD_SIZE;
     const min = hd ? false : magnetSize > 0 && magnetSize <= MIN_SIZE;
     return { ...item, meta: meta.join(", "), size, hd, min };
@@ -166,6 +166,6 @@ Util.upStore();
   };
 
   if (!details.origin) setDetails(getMagnets(), "origin");
-  if (!details.btdig) ReqMagnet.btdig(codeDetails).then(sources => setDetails(sources, "btdig"));
-  if (!details.nyaa) ReqMagnet.nyaa(codeDetails).then(sources => setDetails(sources, "nyaa"));
+  if (!details.btdig) ReqMagnet.btdig(codeDetails).then((sources) => setDetails(sources, "btdig"));
+  if (!details.nyaa) ReqMagnet.nyaa(codeDetails).then((sources) => setDetails(sources, "nyaa"));
 })();
