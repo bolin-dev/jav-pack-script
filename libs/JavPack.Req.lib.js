@@ -1,15 +1,17 @@
 /**
  * @grant GM_xmlhttpRequest
  */
+
+// eslint-disable-next-line no-unused-vars, unused-imports/no-unused-vars
 class Req {
   static DEFAULT_GET_RESPONSE_TYPE = "document";
   static DEFAULT_POST_RESPONSE_TYPE = "json";
   static DEFAULT_TIMEOUT = 30000;
   static DEFAULT_METHOD = "GET";
 
-  static _isRawBody = v => v instanceof FormData || v instanceof Blob || v instanceof ArrayBuffer || v instanceof URLSearchParams;
+  static _isRawBody = (v) => v instanceof FormData || v instanceof Blob || v instanceof ArrayBuffer || v instanceof URLSearchParams;
 
-  static _isPlainObject = v => Object.prototype.toString.call(v) === "[object Object]";
+  static _isPlainObject = (v) => Object.prototype.toString.call(v) === "[object Object]";
 
   static _serializeToFormData(formData, data, parentKey = "") {
     Object.entries(data).forEach(([key, val]) => {
@@ -18,8 +20,7 @@ class Req {
 
       if (val !== null && typeof val === "object" && !(val instanceof Blob || val instanceof Date)) {
         this._serializeToFormData(formData, val, fullKey);
-      }
-      else {
+      } else {
         formData.append(fullKey, val instanceof Date ? val.toISOString() : val);
       }
     });
@@ -30,11 +31,9 @@ class Req {
 
     if (typeof config === "string") {
       options = { url: config };
-    }
-    else if (config !== null && typeof config === "object") {
+    } else if (config !== null && typeof config === "object") {
       options = { ...config };
-    }
-    else {
+    } else {
       return Promise.reject(new TypeError("Request config must be a string or an object"));
     }
 
@@ -53,8 +52,7 @@ class Req {
       }
 
       options.url = urlInstance.toString();
-    }
-    catch {
+    } catch {
       return Promise.reject(new Error(`Invalid Request URL: ${options.url}`));
     }
 
@@ -66,8 +64,7 @@ class Req {
         this._serializeToFormData(formData, data);
         options.data = formData;
       }
-    }
-    else if (method === "GET") {
+    } else if (method === "GET") {
       options.responseType ??= options.url.split(/[?#]/)[0].endsWith(".json") ? "json" : this.DEFAULT_GET_RESPONSE_TYPE;
     }
 

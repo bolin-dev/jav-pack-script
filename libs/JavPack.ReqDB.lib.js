@@ -1,6 +1,8 @@
 /**
  * @require JavPack.Req.lib.js
  */
+
+// eslint-disable-next-line no-unused-vars, unused-imports/no-unused-vars
 class ReqDB extends Req {
   static md5(str) {
     const b = new TextEncoder().encode(str);
@@ -43,9 +45,9 @@ class ReqDB extends Req {
     }
 
     return [a0, b0, c0, d0]
-      .map(v => new Uint32Array([v]))
-      .map(v => new Uint8Array(v.buffer))
-      .map(v => Array.from(v, b => b.toString(16).padStart(2, "0")).join(""))
+      .map((v) => new Uint32Array([v]))
+      .map((v) => new Uint8Array(v.buffer))
+      .map((v) => Array.from(v, (b) => b.toString(16).padStart(2, "0")).join(""))
       .join("");
   }
 

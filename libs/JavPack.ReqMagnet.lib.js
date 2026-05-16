@@ -1,6 +1,8 @@
 /**
  * @require JavPack.Req.lib.js
  */
+
+// eslint-disable-next-line no-unused-vars, unused-imports/no-unused-vars
 class ReqMagnet extends Req {
   /**
    * @connect btdig.com

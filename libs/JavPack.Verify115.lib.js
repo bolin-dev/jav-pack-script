@@ -8,6 +8,8 @@
  * @grant GM_setValue
  * @grant GM_info
  */
+
+// eslint-disable-next-line no-unused-vars, unused-imports/no-unused-vars
 class Verify115 {
   static TAG = GM_info.script.name;
 
@@ -22,7 +24,7 @@ class Verify115 {
   };
 
   static get url() {
-    return `https://${this.HOST}/?ac=security_code&type=web&cb=Close911_${new Date().getTime()}&tag=${this.TAG}`;
+    return `https://${this.HOST}/?ac=security_code&type=web&cb=Close911_${Date.now()}&tag=${this.TAG}`;
   }
 
   static start() {

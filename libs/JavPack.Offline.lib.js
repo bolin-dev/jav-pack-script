@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-unused-vars, unused-imports/no-unused-vars
 class Offline {
   static defaultDir = "云下载";
 
@@ -5,7 +6,7 @@ class Offline {
 
   static defaultColor = "is-info";
 
-  static defaultRename = "${zh}${crack} ${code} ${title}";
+  static defaultRename = `\${zh}\${crack} \${code} \${title}`;
 
   static defaultOptions = {
     tags: ["genres", "actors"],
@@ -15,7 +16,7 @@ class Offline {
 
   static defaultMagnetOptions = {
     filter: ({ size }) => {
-      const magnetSize = parseFloat(size);
+      const magnetSize = Number.parseFloat(size);
       return magnetSize > 314572800 || magnetSize < 1;
     },
     max: 10,
@@ -28,7 +29,7 @@ class Offline {
   };
 
   static defaultRenameTxt = {
-    no: ".${no}",
+    no: `.\${no}`,
     sep: "-",
     zh: "[中字]",
     crack: "[破解]",
@@ -55,10 +56,10 @@ class Offline {
 
         rename = rename?.toString().trim();
         if (rename) {
-          rename = rename.replaceAll("${sep}", "$sep");
-          rename = rename.replaceAll("${zh}", "$zh");
-          rename = rename.replaceAll("${crack}", "$crack");
-          if (!rename.includes("${code}")) rename = `\${code} ${rename}`;
+          rename = rename.replaceAll(`\${sep}`, "$sep");
+          rename = rename.replaceAll(`\${zh}`, "$zh");
+          rename = rename.replaceAll(`\${crack}`, "$crack");
+          if (!rename.includes(`\${code}`)) rename = `\${code} ${rename}`;
         }
 
         if (type === "plain") return { ...item, dir: this.parseDir(dir, params), rename, idx: 0, index };
@@ -66,8 +67,8 @@ class Offline {
         let classes = params[type];
         if (!Array.isArray(classes) || !classes.length) return null;
 
-        if (match.length) classes = classes.filter(item => match.some(key => item.includes(key)));
-        if (exclude.length) classes = classes.filter(item => !exclude.some(key => item.includes(key)));
+        if (match.length) classes = classes.filter((item) => match.some((key) => item.includes(key)));
+        if (exclude.length) classes = classes.filter((item) => !exclude.some((key) => item.includes(key)));
         if (!classes.length) return null;
 
         const typeItemKey = type.replace(/s$/, "");
@@ -85,7 +86,7 @@ class Offline {
           };
         });
       })
-      .filter(item => Boolean(item) && item.dir.every(Boolean))
+      .filter((item) => Boolean(item) && item.dir.every(Boolean))
       .map(({ color = this.defaultColor, desc, ...options }) => {
         return { ...options, color, desc: desc ? desc.toString() : options.dir.join("/") };
       });
@@ -110,7 +111,7 @@ class Offline {
       code: details.code,
       cover: options.cover ? cover : "",
       rename: this.parseVar(rename, details),
-      tags: options.tags.flatMap(key => details[key]).filter(Boolean),
+      tags: options.tags.flatMap((key) => details[key]).filter(Boolean),
     };
   }
 
