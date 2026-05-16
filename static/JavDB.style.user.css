@@ -96,13 +96,12 @@ body:has(.x-load) #footer,
 .navbar {
   --x-rgb: 74 74 74;
   --x-bg-rgb: 238 238 235;
-
-  padding: 0 max(calc((100% - 1344px) / 2), 1rem);
-
   --x-cl: rgb(var(--x-rgb));
   --x-bd: rgb(var(--x-rgb) / 5%);
   --x-bg: rgb(var(--x-bg-rgb) / 80%);
   --x-hv: rgb(var(--x-bg-rgb) / 50%);
+
+  padding: 0 max(calc((100% - 1344px) / 2), 1rem);
 
   &.is-black {
     background-color: var(--x-bg) !important;
