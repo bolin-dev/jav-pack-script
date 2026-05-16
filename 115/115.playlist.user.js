@@ -82,7 +82,7 @@ Util.upStore();
   if (!pickcode || !cid) return;
 
   const playlist = GM_getValue(cid, []);
-  if (!playlist.find(({ pc }) => pc === pickcode)) return;
+  if (!playlist.some(({ pc }) => pc === pickcode)) return;
 
   const repList = (list, curr, cid) => {
     CONTAINER.innerHTML = list
