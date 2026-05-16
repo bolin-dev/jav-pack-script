@@ -5,22 +5,28 @@ export default antfu(
   {
     lessOpinionated: true,
     node: false,
+    typescript: false,
     jsx: false,
-    unicorn: false,
     test: false,
+    vue: false,
+    yaml: false,
     toml: false,
     stylistic: {
       quotes: "double",
-      semi: true,
       jsx: false,
+      semi: true,
+      braceStyle: "1tbs",
     },
-    formatters: true,
+    formatters: {
+      css: true,
+      markdown: true,
+    },
+    isInEditor: true,
   },
   {
     files: ["**/*.js"],
     languageOptions: {
       globals: {
-        ...globals.browser,
         ...globals.greasemonkey,
         Grant: "readonly",
         Magnet: "readonly",
@@ -31,21 +37,14 @@ export default antfu(
         ReqMagnet: "readonly",
         ReqSprite: "readonly",
         ReqTrailer: "readonly",
+        Store: "readonly",
         Util: "readonly",
         Verify115: "readonly",
       },
     },
     rules: {
       "curly": ["error", "multi-line", "consistent"],
-      "no-template-curly-in-string": "off",
-      "no-unused-vars": "off",
-      "unused-imports/no-unused-vars": [
-        "error",
-        {
-          varsIgnorePattern: "^(?:Grant|Magnet|Offline|Req(?:115|DB|Magnet|Sprite|Trailer)?|Util|Verify115)$",
-          argsIgnorePattern: "^_",
-        },
-      ],
+      "style/arrow-parens": ["error", "always"],
     },
   },
 );

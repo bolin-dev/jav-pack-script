@@ -1,15 +1,14 @@
 {
-  // Disable the default formatter, use eslint instead
-  "prettier.enable": false,
+  "editor.defaultFormatter": null,
   "editor.formatOnSave": false,
 
-  // Auto fix
   "editor.codeActionsOnSave": {
+    "source.fixAll": "never",
     "source.fixAll.eslint": "explicit",
+    "source.fixAll.stylelint": "explicit",
     "source.organizeImports": "never"
   },
 
-  // Silent the stylistic rules in your IDE, but still auto fix them
   "eslint.rules.customizations": [
     { "rule": "style/*", "severity": "off", "fixable": true },
     { "rule": "format/*", "severity": "off", "fixable": true },
@@ -23,29 +22,17 @@
     { "rule": "*semi", "severity": "off", "fixable": true }
   ],
 
-  // Enable eslint for all supported languages
   "eslint.validate": [
     "javascript",
-    "javascriptreact",
-    "typescript",
-    "typescriptreact",
-    "vue",
-    "html",
     "markdown",
-    "json",
-    "json5",
     "jsonc",
-    "yaml",
-    "toml",
-    "xml",
-    "gql",
-    "graphql",
-    "astro",
-    "svelte",
-    "css",
-    "less",
-    "scss",
-    "pcss",
-    "postcss"
-  ]
+    "json",
+    "css"
+  ],
+
+  "css.format.enable": false,
+  "css.validate": false,
+
+  "stylelint.validate": ["css"],
+  "stylelint.snippet": ["css"]
 }

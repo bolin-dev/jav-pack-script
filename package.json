@@ -1,18 +1,21 @@
 {
-  "name": "javpack",
-  "version": "0.0.1",
-  "packageManager": "pnpm@10.30.3",
+  "name": "jav-pack",
+  "private": true,
+  "packageManager": "pnpm@11.1.2",
   "description": "一点微小的工作",
   "author": "blc",
   "license": "GPL-3.0-only",
   "scripts": {
-    "lint": "eslint",
-    "lint:fix": "eslint --fix"
+    "check": "eslint && stylelint \"**/*.css\"",
+    "lint": "eslint --fix && stylelint --fix \"**/*.css\""
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^7.6.1",
-    "eslint": "^10.0.2",
+    "@antfu/eslint-config": "^9.0.0",
+    "eslint": "^10.4.0",
     "eslint-plugin-format": "^2.0.1",
-    "globals": "^17.4.0"
+    "globals": "^17.6.0",
+    "stylelint": "^17.11.1",
+    "stylelint-config-recess-order": "^7.7.0",
+    "stylelint-config-standard": "^40.0.0"
   }
 }
