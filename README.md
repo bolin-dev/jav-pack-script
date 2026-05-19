@@ -1,4 +1,4 @@
-# JavPack
+# jav-pack-script
 
 > 一点微小的工作
 
