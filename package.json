@@ -5,6 +5,9 @@
   "description": "一点微小的工作",
   "author": "blc",
   "license": "GPL-3.0-only",
+  "engines": {
+    "node": "^24.0.0"
+  },
   "scripts": {
     "lint": "eslint && stylelint \"**/*.css\"",
     "fix": "eslint --fix && stylelint --fix \"**/*.css\""
