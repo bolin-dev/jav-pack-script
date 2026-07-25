@@ -1,5 +1,9 @@
 /** @type {import("stylelint").Config} */
 export default {
+  ignoreFiles: [
+    "**/node_modules/**",
+    "**/*.min.css",
+  ],
   extends: [
     "stylelint-config-standard",
     "stylelint-config-recess-order",
