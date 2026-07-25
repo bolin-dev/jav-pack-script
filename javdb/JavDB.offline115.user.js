@@ -107,7 +107,7 @@ const setConfig = async (e) => {
   if (!file) return;
 
   try {
-    if (file.type !== "text/javascript") throw new Error("不支持文件类型");
+    if (!/\.m?js$/i.test(file.name)) throw new Error("不支持文件类型");
     if (file.size > 3145728) throw new Error("文件大小限制 3 MB");
 
     const customConfig = await new Promise((resolve, reject) => {
@@ -284,7 +284,7 @@ const offline = async ({ options, magnets, onstart, onprogress, onfinally }, cur
 (function () {
   if (location.host === HOST) return Verify115.verify();
 
-  const attributes = { type: "file", accept: ".js", style: "display: none;" };
+  const attributes = { type: "file", accept: ".js,.mjs", style: "display: none;" };
   const fileInput = GM_addElement(document.body, "input", attributes);
 
   document.addEventListener("keydown", (e) => e.altKey && e.code === "KeyU" && fileInput.click());
