@@ -3,6 +3,7 @@ import globals from "globals";
 
 export default antfu(
   {
+    ignores: ["**/*.min.js"],
     lessOpinionated: true,
     node: false,
     typescript: false,
@@ -25,6 +26,7 @@ export default antfu(
   {
     files: ["**/*.js"],
     languageOptions: {
+      sourceType: "script",
       globals: {
         ...globals.greasemonkey,
         Grant: "readonly",

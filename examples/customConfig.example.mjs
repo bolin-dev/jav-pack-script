@@ -4,8 +4,13 @@ const magnetOptions = {
     return magnetSize > 314572800 || magnetSize < 1;
   },
   sort: (a, b) => {
-    if (a.crack !== b.crack) return a.crack ? -1 : 1;
-    if (a.zh !== b.zh) return a.zh ? -1 : 1;
+    if (a.crack !== b.crack) {
+      return a.crack ? -1 : 1;
+    }
+
+    if (a.zh !== b.zh) {
+      return a.zh ? -1 : 1;
+    }
 
     const aSize = Number.parseFloat(a.size);
     const bSize = Number.parseFloat(b.size);
