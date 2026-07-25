@@ -82,6 +82,9 @@
 | `clean`                | `boolean`                         | 验证成功删除不相关文件                                                                                                                      | `true`                                       |
 | `cover`                | `boolean`                         | 上传设置封面                                                                                                                                | `true`                                       |
 
+自定义配置文件必须默认导出一个返回配置数组的函数，参考
+[customConfig.example.mjs](./examples/customConfig.example.mjs)。
+
 <details><summary>动态参数及示例</summary>
 
 ```JavaScript
@@ -149,7 +152,12 @@ const config = [
   },
 ];
 
-// magnetOptions.filter, magnetOptions.sort 接收参数示例:
+export default () => config;
+```
+
+`magnetOptions.filter`、`magnetOptions.sort` 接收参数示例：
+
+```JavaScript
 {
   zh: true,
   url: "magnet:?xt=urn:btih:9e84de75a5e7db566aa10ab6014d076041ff2f95",
