@@ -1,6 +1,6 @@
 {
-  "editor.defaultFormatter": null,
   "editor.formatOnSave": false,
+  "editor.defaultFormatter": null,
 
   "editor.codeActionsOnSave": {
     "source.fixAll": "never",
@@ -30,9 +30,9 @@
     "css"
   ],
 
-  "css.format.enable": false,
   "css.validate": false,
+  "css.format.enable": false,
 
-  "stylelint.validate": ["css"],
-  "stylelint.snippet": ["css"]
+  "stylelint.snippet": ["css"],
+  "stylelint.validate": ["css"]
 }
